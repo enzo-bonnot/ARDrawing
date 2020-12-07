@@ -1674,9 +1674,12 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="Line.cs" t="Include" />
-          <e p="LinesManager.cs" t="Include" />
           <e p="ObjectsGenerator.cs" t="Include" />
+          <e p="Painting" t="Include">
+            <e p="Line.cs" t="Include" />
+            <e p="LinesManager.cs" t="Include" />
+            <e p="OpenLinesMenu.cs" t="Include" />
+          </e>
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
