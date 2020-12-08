@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.Input;
+using Microsoft.MixedReality.Toolkit.UI;
 using UnityEngine;
 
 namespace Painting
@@ -45,19 +46,35 @@ namespace Painting
             pointerHandler.OnPointerUp.RemoveListener(OnUp);
             pointerHandler.OnPointerDragged.RemoveListener(OnDrag);
 
-            foreach (var line in lines.Where(line => line.GetComponent<Line>().NbPoints <= 2))
+            //Need a classic for to remove while iterating
+            for(var i = 0 ; i < lines.Count ; i++)
             {
-                Destroy(line);
-                lines.Remove(line);
+                if (lines[i].GetComponent<Line>().NbPoints > 2) continue;
+                
+                Destroy(lines[i]);
+                lines.RemoveAt(i);
             }
         }
 
         private void OnUp(MixedRealityPointerEventData arg0)
         {
-            if (currentLine && currentLine.GetComponent<Line>().NbPoints <= 2)
+            if (currentLine)
             {
-                lines.Remove(lines.Last());
-                Destroy(currentLine);
+                if (currentLine.GetComponent<Line>().NbPoints <= 2)
+                {
+                    lines.Remove(lines.Last());
+                    Destroy(currentLine);    
+                }
+                else //Line is valid, activate interactions
+                {
+                    var meshCollider = currentLine.AddComponent<MeshCollider>();
+                    meshCollider.convex = true;
+                    meshCollider.sharedMesh = currentLine.GetComponent<Line>().GetMesh();
+
+                    currentLine.AddComponent<NearInteractionGrabbable>();
+                    currentLine.AddComponent<ConstraintManager>();
+                    currentLine.AddComponent<ObjectManipulator>();
+                }
             }
             currentLine = null;
         }

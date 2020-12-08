@@ -19,6 +19,7 @@ namespace Painting
             line = gameObject.AddComponent<LineRenderer>();
             line.material = material;
             line.startWidth = line.endWidth = 0.05f;
+            line.useWorldSpace = false;
         }
 
         public void Update()
@@ -26,8 +27,16 @@ namespace Painting
             line.SetPositions(points.ToArray());
         }
 
+        public Mesh GetMesh()
+        {
+            var mesh = new Mesh();
+            line.BakeMesh(mesh);
+            return mesh;
+        }
+
         public void AddPoint(Vector3 pos)
         {
+            pos = pos.InverseTransformPoint(transform.position, Quaternion.identity, Vector3.one);
             if (points.Any() && Vector3.Distance(pos, points.Last()) < minimumDistance) return;
         
             points.Add(pos);
