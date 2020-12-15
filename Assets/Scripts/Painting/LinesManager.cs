@@ -35,6 +35,7 @@ namespace Painting
 
         public void LinesButton()
         {
+            DisableEraserMode();
             pointerHandler.OnPointerDown.AddListener(CreateNewLine);
             pointerHandler.OnPointerUp.AddListener(OnUp);
             pointerHandler.OnPointerDragged.AddListener(OnDrag);
@@ -90,11 +91,30 @@ namespace Painting
         public void Eraser()
         {
             DisableLinesMode();
-            Debug.Log("WIP");
+            pointerHandler.OnPointerClicked.AddListener(EraserClicked);
+        }
+
+        private void DisableEraserMode()
+        {
+            pointerHandler.OnPointerClicked.RemoveListener(EraserClicked);
+        }
+
+        private void EraserClicked(MixedRealityPointerEventData evt)
+        {
+            //Need a classic for to remove while iterating
+            for(var i = 0 ; i < lines.Count ; i++)
+            {
+                if (!lines[i].GetComponent<Collider>().bounds.Contains(evt.Pointer.Position)) continue;
+                
+                Destroy(lines[i]);
+                lines.RemoveAt(i);
+            }
         }
 
         public void Return()
-        {
+        {    
+            DisableLinesMode();
+            DisableEraserMode();
             Instantiate(mainMenuPrefab);
             Destroy(gameObject);
         }
