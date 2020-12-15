@@ -8,18 +8,22 @@ namespace Painting
 {
     public class Line : MonoBehaviour
     {
-        [SerializeField] private Material material;
         [SerializeField] private float minimumDistance = 0.02f;
         private LineRenderer line;
         private List<Vector3> points = new List<Vector3>();
         public int NbPoints => line.positionCount;
 
-        void Start()
+        void Awake()
         {
             line = gameObject.AddComponent<LineRenderer>();
-            line.material = material;
+            line.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
             line.startWidth = line.endWidth = 0.05f;
             line.useWorldSpace = false;
+        }
+
+        public void SetMaterial(Color color)
+        {
+            line.SetColors(color, color);
         }
 
         public void Update()

@@ -8,7 +8,6 @@ namespace Painting
 
         public void CreateLinesMenu()
         {
-            Debug.Log("in");
             Instantiate(linesMenu, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

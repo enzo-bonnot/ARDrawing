@@ -12,6 +12,7 @@ namespace Painting
     {
         [SerializeField] private GameObject linePrefab;
         [SerializeField] private GameObject mainMenuPrefab;
+        [SerializeField] private HSVPicker.ColorPicker colorPicker;
         private List<GameObject> lines;
         private GameObject currentLine;
         private PointerHandler pointerHandler;
@@ -29,6 +30,7 @@ namespace Painting
         private void CreateNewLine(MixedRealityPointerEventData arg0)
         {
             var line = Instantiate(linePrefab);
+            line.GetComponent<Line>().SetMaterial(colorPicker.CurrentColor);
             lines.Add(line);
             currentLine = line;
         }
