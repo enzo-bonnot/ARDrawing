@@ -7,11 +7,11 @@ A drawing application using augmented reality technology with Microsoft Hololens
 ## Tasks
 | Feature                               | Progress   |
 |---------------------------------------|------------|
-| Shape creation and manipulation       | To do      |
-| Free drawing                          | To do      |
+| Shape creation and manipulation       | Done       |
+| Free drawing                          | Done       |
 | Be able to import user objects        | To do      |
-| Menu                                  | To do      |
-| Vocal menu                            | To do      |
+| Menu                                  | Done       |
+| Vocal menu                            | Done       |
 
 ## Build
 This project was tested with :
