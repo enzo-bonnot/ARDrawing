@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Enzo\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Enzo\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_ARDrawing.-112092198.00" t="ExcludeRecursive" />
-    <e p="D:\Enzo\UTBM\3eme_annee\VI50\Projet\ARDrawing" t="IncludeRecursive">
+    <e p="C:\Users\Simon\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Simon\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_ARDrawing.2012164626.00" t="ExcludeRecursive" />
+    <e p="D:\Documents\UTBM\VI50\ARDrawing" t="IncludeRecursive">
       <e p="ARDrawing.sln" t="IncludeFlat" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="HSVPicker" t="Include">
+          <e p="Editor" t="Include">
+            <e p="BoxSliderEditor.cs" t="Include" />
+            <e p="HSVPicker.Editors.asmdef" t="Include" />
+          </e>
+          <e p="Enums" t="Include">
+            <e p="ColorValues.cs" t="Include" />
+          </e>
+          <e p="Events" t="Include">
+            <e p="ColorChangedEvent.cs" t="Include" />
+            <e p="HSVChangedEvent.cs" t="Include" />
+          </e>
+          <e p="ExampleScripts" t="Include">
+            <e p="ColorPickerTester.cs" t="Include" />
+            <e p="TiltWindow.cs" t="Include" />
+          </e>
+          <e p="HSVPicker.asmdef" t="Include" />
+          <e p="README.txt" t="Include" />
+          <e p="UI" t="Include">
+            <e p="ColorImage.cs" t="Include" />
+            <e p="ColorLabel.cs" t="Include" />
+            <e p="ColorPicker.cs" t="Include" />
+            <e p="ColorPickerSetup.cs" t="Include" />
+            <e p="ColorPresetManager.cs" t="Include" />
+            <e p="ColorPresets.cs" t="Include" />
+            <e p="ColorSlider.cs" t="Include" />
+            <e p="ColorSliderImage.cs" t="Include" />
+            <e p="HexColorField.cs" t="Include" />
+            <e p="SVBoxSlider.cs" t="Include" />
+          </e>
+          <e p="UtilityScripts" t="Include">
+            <e p="BoxSlider.cs" t="Include" />
+            <e p="HSVUtil.cs" t="Include" />
+          </e>
+        </e>
+        <e p="MixedRealityToolkit.Generated" t="Include">
+          <e p="link.xml" t="Include" />
+        </e>
         <e p="MRTK" t="Include">
           <e p="Core" t="Include">
             <e p="AssemblyInfo.cs" t="Include" />
@@ -839,6 +878,7 @@
               <e p="LeapMotionDeviceManagerProfile.cs" t="Include" />
               <e p="MRTK.LeapMotion.asmdef" t="Include" />
             </e>
+            <e p="License.txt" t="Include" />
             <e p="Oculus" t="Include">
               <e p="XRSDK" t="Include">
                 <e p="AssemblyInfo.cs" t="Include" />
@@ -910,6 +950,7 @@
                 <e p="ArEnumConversion.cs" t="Include" />
               </e>
             </e>
+            <e p="Version.txt" t="Include" />
             <e p="Windows" t="Include">
               <e p="AssemblyInfo.cs" t="Include" />
               <e p="MRTK.WindowsVoice.asmdef" t="Include" />
@@ -1622,6 +1663,7 @@
                 <e p="ScaleMeshEffect.cs" t="Include" />
               </e>
             </e>
+            <e p="License.txt" t="Include" />
             <e p="SceneSystem" t="Include">
               <e p="AssemblyInfo.cs" t="Include" />
               <e p="MixedRealitySceneSystem.cs" t="Include" />
@@ -1639,6 +1681,7 @@
               <e p="MixedRealityTeleportSystem.cs" t="Include" />
               <e p="MRTK.TeleportSystem.asmdef" t="Include" />
             </e>
+            <e p="Version.txt" t="Include" />
           </e>
           <e p="StandardAssets" t="Include">
             <e p="EditorUtilities" t="Include">
@@ -1646,9 +1689,68 @@
               <e p="MRTK.StandardAssets.Editor.asmdef" t="Include" />
               <e p="OnLoadUtilities.cs" t="Include" />
             </e>
+            <e p="Fonts" t="Include">
+              <e p="License.txt" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="ChannelPacker.shader" t="Include" />
+              <e p="DepthBufferPostProcess.shader" t="Include" />
+              <e p="InstancedColored.shader" t="Include" />
+              <e p="InvisibleShader.shader" t="Include" />
+              <e p="MixedRealityShaderUtils.cginc" t="Include" />
+              <e p="MixedRealityStandard.shader" t="Include" />
+              <e p="MixedRealityTextMeshPro.shader" t="Include" />
+              <e p="MRTK_Wireframe.shader" t="Include" />
+              <e p="Text3DShader.shader" t="Include" />
+            </e>
+            <e p="Textures" t="Include">
+              <e p="Oculus lineart attribution.txt" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="ObjectsGenerator.cs" t="Include" />
+          <e p="Painting" t="Include">
+            <e p="ColorPicker.cs" t="Include" />
+            <e p="Line.cs" t="Include" />
+            <e p="LinesManager.cs" t="Include" />
+            <e p="OpenLinesMenu.cs" t="Include" />
+          </e>
+        </e>
+        <e p="TextMesh Pro" t="Include">
+          <e p="Fonts" t="Include">
+            <e p="LiberationSans - OFL.txt" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="LineBreaking Following Characters.txt" t="Include" />
+            <e p="LineBreaking Leading Characters.txt" t="Include" />
+          </e>
+          <e p="Shaders" t="Include">
+            <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+            <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+            <e p="TMP_Bitmap.shader" t="Include" />
+            <e p="TMP_SDF Overlay.shader" t="Include" />
+            <e p="TMP_SDF SSD.shader" t="Include" />
+            <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+            <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+            <e p="TMP_SDF-Mobile SSD.shader" t="Include" />
+            <e p="TMP_SDF-Mobile.shader" t="Include" />
+            <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+            <e p="TMP_SDF-Surface.shader" t="Include" />
+            <e p="TMP_SDF.shader" t="Include" />
+            <e p="TMP_Sprite.shader" t="Include" />
+            <e p="TMPro.cginc" t="Include" />
+            <e p="TMPro_Mobile.cginc" t="Include" />
+            <e p="TMPro_Properties.cginc" t="Include" />
+            <e p="TMPro_Surface.cginc" t="Include" />
+          </e>
+          <e p="Sprites" t="Include">
+            <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
       </e>
+      <e p="HSVPicker.csproj" t="IncludeRecursive" />
+      <e p="HSVPicker.Editors.csproj" t="IncludeRecursive" />
       <e p="Microsoft.MixedReality.Toolkit.Async.csproj" t="IncludeRecursive" />
       <e p="Microsoft.MixedReality.Toolkit.csproj" t="IncludeRecursive" />
       <e p="Microsoft.MixedReality.Toolkit.Editor.BuildAndDeploy.csproj" t="IncludeRecursive" />
