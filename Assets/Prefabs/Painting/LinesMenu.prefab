@@ -5656,6 +5656,7 @@ GameObject:
   - component: {fileID: 8985883936200904528}
   - component: {fileID: 3108293315337008753}
   - component: {fileID: 9150122363506836339}
+  - component: {fileID: 3969175733571903350}
   m_Layer: 0
   m_Name: LinesMenu
   m_TagString: Untagged
@@ -5860,6 +5861,19 @@ MonoBehaviour:
     type: 3}
   mainMenuPrefab: {fileID: 948798929478206855, guid: 5f16166802f72db41a0348326aab8fa0,
     type: 3}
+  colorPicker: {fileID: 222548918052424544}
+--- !u!114 &3969175733571903350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5863588576126973995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515a08428d454204cbabff7c56bcb97c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   colorPicker: {fileID: 222548918052424544}
 --- !u!1 &6064822893464811711
 GameObject:

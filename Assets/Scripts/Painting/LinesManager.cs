@@ -43,7 +43,7 @@ namespace Painting
             pointerHandler.OnPointerDragged.AddListener(OnDrag);
         }
 
-        private void DisableLinesMode()
+        public void DisableLinesMode()
         {
             pointerHandler.OnPointerDown.RemoveListener(CreateNewLine);
             pointerHandler.OnPointerUp.RemoveListener(OnUp);
@@ -77,6 +77,10 @@ namespace Painting
                     currentLine.AddComponent<NearInteractionGrabbable>();
                     currentLine.AddComponent<ConstraintManager>();
                     currentLine.AddComponent<ObjectManipulator>();
+                    var inputManager = GetComponentInParent<GlobalActionsManager>();
+                    var interactable = currentLine.GetComponent<Interactable>();
+                    var temp = currentLine;
+                    interactable.OnClick.AddListener(() => inputManager.HandleInput(temp));
                 }
             }
             currentLine = null;
