@@ -6,14 +6,6 @@ using UnityEngine;
 
 public class ObjectsGenerator : MonoBehaviour
 {
-	[SerializeField] private GameObject cubePrefab;
-
-	[SerializeField] private GameObject spherePrefab;
-
-	[SerializeField] private GameObject capsulePrefab;
-
-	[SerializeField] private GameObject cylinderPrefab;
-
 	private GlobalActionsManager globalActionsManager;
 
 	private Camera camera;
@@ -29,36 +21,12 @@ public class ObjectsGenerator : MonoBehaviour
     {
         
     }
-
-    public void AddCube()
+    
+    public void AddObject(GameObject gameObj)
     {
 	    Vector3 pos = camera.transform.forward;
 	    pos.z += 0.2f;
-	    var obj = Instantiate(cubePrefab, pos, new Quaternion());
-	    AddHandlers(obj);
-    }
-
-    public void AddSphere()
-    {
-	    Vector3 pos = camera.transform.forward;
-	    pos.z += 0.2f;
-	    var obj = Instantiate(spherePrefab, pos, new Quaternion());
-	    AddHandlers(obj);
-    }
-
-    public void AddCapsule()
-    {
-	    Vector3 pos = camera.transform.forward;
-	    pos.z += 0.2f;
-	    var obj= Instantiate(capsulePrefab, pos, new Quaternion());
-	    AddHandlers(obj);
-    }
-
-    public void AddCylinder()
-    {
-	    Vector3 pos = camera.transform.forward;
-	    pos.z += 0.2f;
-	    var obj= Instantiate(cylinderPrefab, pos, new Quaternion());
+	    var obj= Instantiate(gameObj, pos, gameObj.transform.rotation);
 	    AddHandlers(obj);
     }
 
