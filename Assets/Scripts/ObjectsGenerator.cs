@@ -32,7 +32,7 @@ public class ObjectsGenerator : MonoBehaviour
 
     public void AddCube()
     {
-	    Vector3 pos = camera.transform.position;
+	    Vector3 pos = camera.transform.forward;
 	    pos.z += 0.2f;
 	    var obj = Instantiate(cubePrefab, pos, new Quaternion());
 	    AddHandlers(obj);
@@ -40,7 +40,7 @@ public class ObjectsGenerator : MonoBehaviour
 
     public void AddSphere()
     {
-	    Vector3 pos = camera.transform.position;
+	    Vector3 pos = camera.transform.forward;
 	    pos.z += 0.2f;
 	    var obj = Instantiate(spherePrefab, pos, new Quaternion());
 	    AddHandlers(obj);
@@ -48,7 +48,7 @@ public class ObjectsGenerator : MonoBehaviour
 
     public void AddCapsule()
     {
-	    Vector3 pos = camera.transform.position;
+	    Vector3 pos = camera.transform.forward;
 	    pos.z += 0.2f;
 	    var obj= Instantiate(capsulePrefab, pos, new Quaternion());
 	    AddHandlers(obj);
@@ -56,7 +56,7 @@ public class ObjectsGenerator : MonoBehaviour
 
     public void AddCylinder()
     {
-	    Vector3 pos = camera.transform.position;
+	    Vector3 pos = camera.transform.forward;
 	    pos.z += 0.2f;
 	    var obj= Instantiate(cylinderPrefab, pos, new Quaternion());
 	    AddHandlers(obj);

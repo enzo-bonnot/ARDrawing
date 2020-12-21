@@ -40,5 +40,7 @@ public class MenusManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         paintMenu.SetActive(true);
+        var actionsManager = paintMenu.GetComponent<PaintActionsManager>();
+        actionsManager.ToggleManipulators(false);
     }
 }

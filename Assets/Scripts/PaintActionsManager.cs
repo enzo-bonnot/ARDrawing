@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Microsoft.MixedReality.Toolkit.UI;
 using Painting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PaintActionsManager : MonoBehaviour
 {
     private bool isFilling;
     private bool isErasing;
+    private GameObject eraseButton;
+    private GameObject fillButton;
+    private GameObject lineButton;
     [SerializeField] private HSVPicker.ColorPicker colorPicker;
     // Start is called before the first frame update
     void Start()
     {
         isErasing = false;
         isFilling = false;
+        fillButton = GameObject.Find("FillButton");
+        eraseButton = GameObject.Find("EraserButton");
+        lineButton = GameObject.Find("CreateButton");
     }
 
     // Update is called once per frame
@@ -25,12 +33,30 @@ public class PaintActionsManager : MonoBehaviour
     {
         isErasing = false;
         isFilling = !isFilling;
+        ShowToggle(fillButton, eraseButton, lineButton);
     }
 
     public void ToggleErase()
     {
         isFilling = false;
         isErasing = !isErasing;
+        ShowToggle(eraseButton, fillButton, lineButton);
+    }
+
+    public void ToggleLines()
+    {
+        isFilling = false;
+        isErasing = false;
+        ShowToggle(lineButton, fillButton, eraseButton);
+    }
+
+    private void ShowToggle(GameObject toToggle, params GameObject[] toDeactivate)
+    {
+        toToggle.transform.Find("BackPlate").gameObject.SetActive(!toToggle.transform.Find("BackPlate").gameObject.activeInHierarchy);
+        foreach (var o in toDeactivate)
+        {
+            o.transform.Find("BackPlate").gameObject.SetActive(false);
+        }
     }
 
     public void DeactivateAll()
@@ -67,7 +93,15 @@ public class PaintActionsManager : MonoBehaviour
         else
         {
             target.GetComponent<MeshRenderer>().material.SetColor("_Color", colorPicker.CurrentColor);
-            // target.GetComponent<MeshRenderer>().materials[0].SetColor("_Color", colorPicker.CurrentColor);
+        }
+    }
+
+    public void ToggleManipulators(bool isManipulable)
+    {
+        var manipulableObjects = GameObject.FindGameObjectsWithTag("Manipulable");
+        foreach (var o in manipulableObjects)
+        {
+            o.GetComponent<ObjectManipulator>().enabled = isManipulable;
         }
     }
 }

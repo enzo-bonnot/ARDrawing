@@ -29,7 +29,7 @@ namespace Painting
 
         private void CreateNewLine(MixedRealityPointerEventData arg0)
         {
-            var line = Instantiate(linePrefab);
+            var line = Instantiate(linePrefab, arg0.Pointer.Position + Camera.main.transform.forward*0.2f, Quaternion.identity);
             line.GetComponent<Line>().SetMaterial(colorPicker.CurrentColor);
             lines.Add(line);
             currentLine = line;
@@ -76,7 +76,8 @@ namespace Painting
 
                     currentLine.AddComponent<NearInteractionGrabbable>();
                     currentLine.AddComponent<ConstraintManager>();
-                    currentLine.AddComponent<ObjectManipulator>();
+                    var manipulator = currentLine.AddComponent<ObjectManipulator>();
+                    manipulator.enabled = false;
                     var inputManager = GetComponentInParent<GlobalActionsManager>();
                     var interactable = currentLine.GetComponent<Interactable>();
                     var temp = currentLine;
@@ -90,7 +91,7 @@ namespace Painting
         {
             if (currentLine)
             {
-                currentLine.GetComponent<Line>().AddPoint(evt.Pointer.Position);
+                currentLine.GetComponent<Line>().AddPoint(evt.Pointer.Position + Camera.main.transform.forward*0.2f);
             }
         }
 
