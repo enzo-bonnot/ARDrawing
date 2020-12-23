@@ -161,8 +161,15 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
         
         var bytes = image.EncodeToPNG();
         Destroy(image);
-        
-        File.WriteAllBytes("C:\\Data\\USERS\\holol\\Pictures" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".png", bytes);
+
+        var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".png";
+        var filePath = Path.Combine(Application.persistentDataPath, fileName);
+        File.WriteAllBytes(filePath, bytes);
+        Debug.Log("Saved");
+        #if !UNITY_EDITOR && UNITY_WINRT_10_0
+            var cameraRollFolder = Windows.Storage.KnownFolders.CameraRoll.Path;
+            File.Move(filePath, Path.Combine(cameraRollFolder, fileName));
+        #endif
         camera.targetTexture = null;
         DeactivateCaptureWithoutBackground();
     }
