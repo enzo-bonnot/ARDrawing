@@ -5,13 +5,13 @@ using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Painting
 {
     public class LinesManager : MonoBehaviour
     {
         [SerializeField] private GameObject linePrefab;
-        [SerializeField] private GameObject mainMenuPrefab;
         [SerializeField] private HSVPicker.ColorPicker colorPicker;
         private List<GameObject> lines;
         private GameObject currentLine;
@@ -29,15 +29,19 @@ namespace Painting
 
         private void CreateNewLine(MixedRealityPointerEventData arg0)
         {
-            var line = Instantiate(linePrefab, arg0.Pointer.Position + Camera.main.transform.forward*0.2f, Quaternion.identity);
-            line.GetComponent<Line>().SetMaterial(colorPicker.CurrentColor);
-            lines.Add(line);
-            currentLine = line;
+            RaycastHit hit;
+            var mask = LayerMask.GetMask("Menu");
+            if (!Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, mask))
+            {
+                var line = Instantiate(linePrefab, arg0.Pointer.Position + Camera.main.transform.forward*0.2f, Quaternion.identity);
+                line.GetComponent<Line>().SetMaterial(colorPicker.CurrentColor);
+                lines.Add(line);
+                currentLine = line;
+            }
         }
 
-        public void LinesButton()
+        public void EnableLinesMode()
         {
-            DisableEraserMode();
             pointerHandler.OnPointerDown.AddListener(CreateNewLine);
             pointerHandler.OnPointerUp.AddListener(OnUp);
             pointerHandler.OnPointerDragged.AddListener(OnDrag);
@@ -93,37 +97,6 @@ namespace Painting
             {
                 currentLine.GetComponent<Line>().AddPoint(evt.Pointer.Position + Camera.main.transform.forward*0.2f);
             }
-        }
-
-        public void Eraser()
-        {
-            DisableLinesMode();
-            pointerHandler.OnPointerClicked.AddListener(EraserClicked);
-        }
-
-        private void DisableEraserMode()
-        {
-            pointerHandler.OnPointerClicked.RemoveListener(EraserClicked);
-        }
-
-        private void EraserClicked(MixedRealityPointerEventData evt)
-        {
-            //Need a classic for to remove while iterating
-            for(var i = 0 ; i < lines.Count ; i++)
-            {
-                if (!lines[i].GetComponent<Collider>().bounds.Contains(evt.Pointer.Position)) continue;
-                
-                Destroy(lines[i]);
-                lines.RemoveAt(i);
-            }
-        }
-
-        public void Return()
-        {    
-            DisableLinesMode();
-            DisableEraserMode();
-            Instantiate(mainMenuPrefab);
-            Destroy(gameObject);
         }
     }
 }

@@ -70,7 +70,7 @@ MonoBehaviour:
   profiles:
   - Target: {fileID: 691040278797622899}
     Themes:
-    - {fileID: 11400000, guid: 6c08928bdf950d54390c1346d23d422b, type: 2}
+    - {fileID: 11400000, guid: 254c9ee96bd916f4e86e84f69e09b272, type: 2}
   OnClick:
     m_PersistentCalls:
       m_Calls: []

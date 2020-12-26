@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1348628757332388484}
   m_Layer: 0
   m_Name: Cone
-  m_TagString: Untagged
+  m_TagString: Manipulable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3613567641014311022, guid: 4157fe8d70d8cd64a9fc23c0c954dc90, type: 3}
 --- !u!114 &-1348628757332388484

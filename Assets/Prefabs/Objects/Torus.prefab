@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4642088654374922575}
   m_Layer: 0
   m_Name: Torus
-  m_TagString: Untagged
+  m_TagString: Manipulable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8803937527578110353, guid: d4a797eb6110c52499559fd723cfc346, type: 3}
 --- !u!114 &-4642088654374922575

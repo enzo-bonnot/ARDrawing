@@ -9,18 +9,24 @@ public class PaintActionsManager : MonoBehaviour
 {
     private bool isFilling;
     private bool isErasing;
+    private bool isLines;
+    
     private GameObject eraseButton;
     private GameObject fillButton;
     private GameObject lineButton;
+    
+    private LinesManager linesManager;
     [SerializeField] private HSVPicker.ColorPicker colorPicker;
     // Start is called before the first frame update
     void Start()
     {
         isErasing = false;
         isFilling = false;
+        isLines = false;
         fillButton = GameObject.Find("FillButton");
         eraseButton = GameObject.Find("EraserButton");
         lineButton = GameObject.Find("CreateButton");
+        linesManager = GetComponent<LinesManager>();
     }
 
     // Update is called once per frame
@@ -32,6 +38,7 @@ public class PaintActionsManager : MonoBehaviour
     public void ToggleFill()
     {
         isErasing = false;
+        isLines = false;
         isFilling = !isFilling;
         ShowToggle(fillButton, eraseButton, lineButton);
     }
@@ -39,6 +46,7 @@ public class PaintActionsManager : MonoBehaviour
     public void ToggleErase()
     {
         isFilling = false;
+        isLines = false;
         isErasing = !isErasing;
         ShowToggle(eraseButton, fillButton, lineButton);
     }
@@ -47,12 +55,26 @@ public class PaintActionsManager : MonoBehaviour
     {
         isFilling = false;
         isErasing = false;
+        if (!isLines)
+        {
+            linesManager.EnableLinesMode();
+            isLines = true;
+        }
+        else
+        {
+            linesManager.DisableLinesMode();
+            isLines = false;
+        }
         ShowToggle(lineButton, fillButton, eraseButton);
     }
 
     private void ShowToggle(GameObject toToggle, params GameObject[] toDeactivate)
     {
-        toToggle.transform.Find("BackPlate").gameObject.SetActive(!toToggle.transform.Find("BackPlate").gameObject.activeInHierarchy);
+        if (toToggle)
+        {
+            toToggle.transform.Find("BackPlate").gameObject
+                .SetActive(!toToggle.transform.Find("BackPlate").gameObject.activeInHierarchy);
+        }
         foreach (var o in toDeactivate)
         {
             o.transform.Find("BackPlate").gameObject.SetActive(false);
@@ -63,6 +85,7 @@ public class PaintActionsManager : MonoBehaviour
     {
         isErasing = false;
         isFilling = false;
+        ShowToggle(null, eraseButton, fillButton, lineButton);
     }
 
     public void HandleClick(GameObject target)
@@ -79,8 +102,6 @@ public class PaintActionsManager : MonoBehaviour
 
     private void Erase(GameObject target)
     {
-        Debug.Log("In eraser");
-        Debug.Log(target);
         Destroy(target);
     }
 
