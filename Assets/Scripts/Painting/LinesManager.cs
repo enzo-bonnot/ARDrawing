@@ -13,14 +13,11 @@ namespace Painting
     {
         [SerializeField] private GameObject linePrefab;
         [SerializeField] private HSVPicker.ColorPicker colorPicker;
-        private List<GameObject> lines;
         private GameObject currentLine;
         private PointerHandler pointerHandler;
 
         public void Start()
         {
-            lines = new List<GameObject>();
-            
             pointerHandler = gameObject.AddComponent<PointerHandler>();
 
             // Make this a global input handler, otherwise this object will only receive events when it has input focus
@@ -35,7 +32,6 @@ namespace Painting
             {
                 var line = Instantiate(linePrefab, arg0.Pointer.Position + Camera.main.transform.forward*0.2f, Quaternion.identity);
                 line.GetComponent<Line>().SetMaterial(colorPicker.CurrentColor);
-                lines.Add(line);
                 currentLine = line;
             }
         }
@@ -52,15 +48,6 @@ namespace Painting
             pointerHandler.OnPointerDown.RemoveListener(CreateNewLine);
             pointerHandler.OnPointerUp.RemoveListener(OnUp);
             pointerHandler.OnPointerDragged.RemoveListener(OnDrag);
-
-            //Need a classic for to remove while iterating
-            for(var i = 0 ; i < lines.Count ; i++)
-            {
-                if (lines[i].GetComponent<Line>().NbPoints > 2) continue;
-                
-                Destroy(lines[i]);
-                lines.RemoveAt(i);
-            }
         }
 
         private void OnUp(MixedRealityPointerEventData arg0)
@@ -69,7 +56,6 @@ namespace Painting
             {
                 if (currentLine.GetComponent<Line>().NbPoints <= 2)
                 {
-                    lines.Remove(lines.Last());
                     Destroy(currentLine);    
                 }
                 else //Line is valid, activate interactions

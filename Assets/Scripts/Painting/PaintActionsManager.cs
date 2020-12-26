@@ -85,6 +85,8 @@ public class PaintActionsManager : MonoBehaviour
     {
         isErasing = false;
         isFilling = false;
+        isLines = false;
+        linesManager.DisableLinesMode();
         ShowToggle(null, eraseButton, fillButton, lineButton);
     }
 

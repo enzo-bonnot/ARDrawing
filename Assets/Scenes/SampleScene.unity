@@ -962,6 +962,11 @@ PrefabInstance:
       propertyPath: m_textAlignment
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 5684875915651602478, guid: 6dfc5f0a5fe04f94ab15177720f4bf05,
+        type: 3}
+      propertyPath: m_text
+      value: Add Suzanne
+      objectReference: {fileID: 0}
     - target: {fileID: 5684875915651602512, guid: 6dfc5f0a5fe04f94ab15177720f4bf05,
         type: 3}
       propertyPath: m_Mesh
@@ -3183,7 +3188,7 @@ PrefabInstance:
     - target: {fileID: 4313352271961353356, guid: 2512bf645d78b434a971ac7fea822cdc,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4313352271961353356, guid: 2512bf645d78b434a971ac7fea822cdc,
         type: 3}
@@ -3234,11 +3239,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1326323781}
+      objectReference: {fileID: 1088517101}
     - target: {fileID: 4313352271961353356, guid: 2512bf645d78b434a971ac7fea822cdc,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: DisableLinesMode
+      value: ActivateMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4313352271961353356, guid: 2512bf645d78b434a971ac7fea822cdc,
         type: 3}
@@ -4666,7 +4671,7 @@ PrefabInstance:
     - target: {fileID: 8219002942482847169, guid: 247dc8aebe30ca2408e8293a883c75df,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8222481329602893483, guid: 247dc8aebe30ca2408e8293a883c75df,
         type: 3}
@@ -4726,7 +4731,7 @@ PrefabInstance:
     - target: {fileID: 8222863950748663225, guid: 247dc8aebe30ca2408e8293a883c75df,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.35
+      value: 0.38566726
       objectReference: {fileID: 0}
     - target: {fileID: 8222863950748663225, guid: 247dc8aebe30ca2408e8293a883c75df,
         type: 3}
@@ -5358,7 +5363,7 @@ PrefabInstance:
     - target: {fileID: 8779034279059886464, guid: 3f1f46cbecbe08e46a303ccfdb5b498a,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8779034279059886464, guid: 3f1f46cbecbe08e46a303ccfdb5b498a,
         type: 3}

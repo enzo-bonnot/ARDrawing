@@ -43,22 +43,6 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
         
     }
 
-    public void ToggleCaptureWithoutBackground()
-    {
-        if (activeWithoutBackground)
-        {
-            DeactivateCaptureWithoutBackground();
-        }
-        else
-        {
-            if (activeWithBackground)
-            {
-                DeactivateCaptureWithBackground();
-            }
-            ActivateCaptureWithoutBackground();
-        }
-    }
-
     public void ToggleCaptureWithBackground()
     {
         if (activeWithBackground)
@@ -81,6 +65,14 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
         ToggleIcon(withBackgroundIcon, true);
         activeWithBackground = true;
         infoTooltip.SetActive(true);
+    }
+    
+    public void DeactivateCaptureWithBackground()
+    {
+        CoreServices.InputSystem.UnregisterHandler<IMixedRealityGestureHandler>(this);
+        ToggleIcon(withBackgroundIcon, false);
+        activeWithBackground = false;
+        infoTooltip.SetActive(false);
     }
 
     private void OnPhotoCaptureCreated(PhotoCapture captureObject)
@@ -146,6 +138,22 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
         PhotoCapture.CreateAsync(true, OnPhotoCaptureCreated);
     }
     
+    public void ToggleCaptureWithoutBackground()
+    {
+        if (activeWithoutBackground)
+        {
+            DeactivateCaptureWithoutBackground();
+        }
+        else
+        {
+            if (activeWithBackground)
+            {
+                DeactivateCaptureWithBackground();
+            }
+            ActivateCaptureWithoutBackground();
+        }
+    }
+    
     private void ActivateCaptureWithoutBackground()
     {
         CoreServices.InputSystem.RegisterHandler<IMixedRealityGestureHandler>(this);
@@ -161,24 +169,12 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
         infoTooltip.SetActive(false);
     }
 
-    public void DeactivateCaptureWithBackground()
-    {
-        CoreServices.InputSystem.UnregisterHandler<IMixedRealityGestureHandler>(this);
-        ToggleIcon(withBackgroundIcon, false);
-        activeWithBackground = false;
-        infoTooltip.SetActive(false);
-    }
-
-    private void ToggleIcon(GameObject icon, bool activated)
-    {
-        icon.SetActive(activated);
-    }
-
     public void CaptureWithoutBackground()
     {
-        var currentRenderTexture = RenderTexture.active;
-        camera.targetTexture = new RenderTexture(1920, 1080, 8);
-        RenderTexture.active = camera.targetTexture;
+        var renderTexture = new RenderTexture(1920, 1080, 24);
+        camera.targetTexture = renderTexture;
+        var image = new Texture2D(camera.targetTexture.width, camera.targetTexture.height, TextureFormat.RGB24, false);
+        
         
         HideUI();
         infoTooltip.SetActive(false);
@@ -186,26 +182,29 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
         camera.Render();
         
         ShowUI();
+        RenderTexture.active = camera.targetTexture;
         
-        var image = new Texture2D(camera.targetTexture.width, camera.targetTexture.height);
         image.ReadPixels(new Rect(0, 0, camera.targetTexture.width, camera.targetTexture.height), 0, 0);
-        image.Apply();
-        RenderTexture.active = currentRenderTexture;
+        RenderTexture.active = null;
+        camera.targetTexture = null;
+        Destroy(renderTexture);
         
         var bytes = image.EncodeToPNG();
-        Destroy(image);
 
         var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".png";
         var filePath = Path.Combine(Application.persistentDataPath, fileName);
         File.WriteAllBytes(filePath, bytes);
-        File.WriteAllBytes("./"+fileName, bytes);
 
         #if !UNITY_EDITOR && UNITY_WINRT_10_0
             var cameraRollFolder = Windows.Storage.KnownFolders.CameraRoll.Path;
             File.Move(filePath, Path.Combine(cameraRollFolder, fileName));
         #endif
-        camera.targetTexture = null;
         DeactivateCaptureWithoutBackground();
+    }
+    
+    private void ToggleIcon(GameObject icon, bool activated)
+    {
+        icon.SetActive(activated);
     }
 
     private void SetLayerRecursively(GameObject obj, int layer)
