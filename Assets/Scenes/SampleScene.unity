@@ -4404,6 +4404,7 @@ MonoBehaviour:
     description: Manipulate Action
     axisConstraint: 0
   infoTooltip: {fileID: 1465184544}
+  actionsManager: {fileID: 1326323780}
 --- !u!1 &1201610303 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 222548917708758997, guid: 2512bf645d78b434a971ac7fea822cdc,
