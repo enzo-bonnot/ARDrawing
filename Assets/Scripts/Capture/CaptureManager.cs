@@ -25,6 +25,8 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
     private PhotoCapture photoCaptureObject;
 
     [SerializeField] private GameObject infoTooltip;
+
+    [SerializeField] private PaintActionsManager actionsManager;
     
     // Start is called before the first frame update
     void Start()
@@ -65,6 +67,7 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
         ToggleIcon(withBackgroundIcon, true);
         activeWithBackground = true;
         infoTooltip.SetActive(true);
+        actionsManager.ToggleManipulators(false);
     }
     
     public void DeactivateCaptureWithBackground()
@@ -73,6 +76,7 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
         ToggleIcon(withBackgroundIcon, false);
         activeWithBackground = false;
         infoTooltip.SetActive(false);
+        actionsManager.ToggleManipulators(true);
     }
 
     private void OnPhotoCaptureCreated(PhotoCapture captureObject)
@@ -160,6 +164,7 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
         ToggleIcon(withoutBackgroundIcon, true);
         activeWithoutBackground = true;
         infoTooltip.SetActive(true);
+        actionsManager.ToggleManipulators(false);
     }
     public void DeactivateCaptureWithoutBackground()
     {
@@ -167,6 +172,7 @@ public class CaptureManager : MonoBehaviour, IMixedRealityGestureHandler
         ToggleIcon(withoutBackgroundIcon, false);
         activeWithoutBackground = false;
         infoTooltip.SetActive(false);
+        actionsManager.ToggleManipulators(true);
     }
 
     public void CaptureWithoutBackground()
